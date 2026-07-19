@@ -6,8 +6,57 @@
         <title>Timer and Stopwatch</title>
         <link rel="icon" href="favicon.png" type="image/png">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     </head>    
-    <body>  
+    <body>
+        <nav>
+            <div class="logo-text">
+                VIRTUAL CLOCK
+            </div>
+        </nav>
+        <div class="parent-container"> 
+            <div class="sidebar">
+                <div class="menu-item">
+                    <span class="material-symbols-outlined">alarm</span>
+                    <span>Time</span>
+                </div>
+                <div class="menu-item">
+                    <span class="material-symbols-outlined">timer</span>
+                    <span>Stopwatch</span>
+                </div>
+                <div class="menu-item">
+                    <span class="material-symbols-outlined">hourglass</span>
+                    <span>Timer</span>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="home-page">
+                    <div class="clock-container">
+
+                        <div id="time">
+                            00:00:00
+                        </div>
+
+                        <div id="day">
+                            Monday
+                        </div>
+
+                        <div id="date">
+                            19 July 2026
+                        </div>
+
+                    </div>
+                </div>
+                <div class="stopwatch-page hidden">
+                    <h2>Stopwatch</h2>
+                    <p>This is the stopwatch page.</p>
+                </div>
+                <div class="timer-page hidden">
+                    <h2>Timer</h2>
+                    <p>This is the timer page.</p>
+                </div>
+            </div>
+        </div>  
         <script src="script.js"></script>
     </body>
 </html>
