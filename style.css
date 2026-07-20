@@ -4,7 +4,7 @@
     box-sizing:border-box;
 }
 body{
-    overflow: hidden;
+    min-height: 100vh;
     user-select: none;
 }  
 nav{
@@ -31,7 +31,7 @@ nav{
 }
 .parent-container{
     display: flex;
-    height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
     background-color: #d9d9d9;
 }
 .sidebar{
@@ -69,8 +69,9 @@ nav{
 }
 .main-content{
     flex: 1;
+    min-width: 0;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 }
 .content-card{
     position: relative;
@@ -88,7 +89,6 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-75px);
     inset: 0;
     position: absolute;
 }
@@ -130,12 +130,12 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-75px);
     inset: 0;
     position: absolute;
 }
 .stopwatch-container{
-    width: 650px;
+    width: min(650px, 100%);
+    padding: 0 24px;
     text-align: center;
 }
 .stopwatch-time{
@@ -179,12 +179,12 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-75px);
     inset: 0;
     position: absolute;
 }
 .timer-container{
-    width: 650px;
+    width: min(650px, 100%);
+    padding: 0 24px;
     text-align: center;
 }
 .timer-inputs{
@@ -348,4 +348,133 @@ input[type="number"]{
 }
 .hidden{
     display: none;
+}
+
+@media (max-width: 900px){
+    nav{
+        height: 72px;
+    }
+    .logo-text{
+        font-size: clamp(26px, 4vw, 36px);
+    }
+    .parent-container{
+        min-height: calc(100vh - 72px);
+    }
+    .sidebar{
+        width: 120px;
+        font-size: 22px;
+    }
+    .menu-item{
+        gap: 12px;
+        padding: 24px 12px;
+    }
+    .material-symbols-outlined{
+        font-size: 40px;
+    }
+    #time,
+    .stopwatch-time,
+    .timer-display{
+        font-size: clamp(48px, 8vw, 72px);
+    }
+}
+
+@media (max-width: 600px){
+    nav{
+        height: 64px;
+    }
+    .logo-text{
+        font-size: 25px;
+    }
+    .parent-container{
+        min-height: calc(100vh - 64px);
+        flex-direction: column;
+    }
+    .sidebar{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        font-size: 14px;
+    }
+    .menu-item{
+        flex: 1;
+        gap: 4px;
+        padding: 9px 4px;
+    }
+    .material-symbols-outlined{
+        font-size: 29px;
+    }
+    .content-card{
+        width: calc(100% - 24px);
+        height: calc(100% - 24px);
+        min-height: 480px;
+        margin: 12px auto;
+    }
+    #time,
+    .stopwatch-time,
+    .timer-display{
+        font-size: clamp(38px, 12vw, 56px);
+        margin-bottom: 24px;
+        white-space: nowrap;
+    }
+    #day{
+        font-size: 28px;
+    }
+    #date{
+        font-size: 19px;
+    }
+    #time-format-btn{
+        margin-top: 24px;
+        padding: 11px 16px;
+        font-size: 14px;
+    }
+    .stopwatch-container,
+    .timer-container{
+        padding: 0 16px;
+    }
+    .stopwatch-controls,
+    .timer-controls{
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+    }
+    .stopwatch-controls button,
+    .timer-controls button{
+        min-width: 0;
+        flex: 1 1 130px;
+        padding: 11px 12px;
+        font-size: 16px;
+    }
+    .timer-inputs{
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+    .timer-inputs input{
+        width: min(23vw, 72px);
+        height: 54px;
+        font-size: 24px;
+    }
+    .timer-inputs span{
+        font-size: 30px;
+    }
+    .stopwatch-laps{
+        max-height: 220px;
+        margin-top: 20px;
+    }
+    .lap-header,
+    .lap-row{
+        grid-template-columns: 42px 1fr 1fr;
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px){
+    .stopwatch-controls button,
+    .timer-controls button{
+        flex-basis: 100%;
+    }
+    .content-card{
+        min-height: 560px;
+    }
 }
