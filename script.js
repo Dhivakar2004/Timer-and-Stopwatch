@@ -91,3 +91,86 @@ updateClock();
 // Update every second
 setInterval(updateClock, 1000);
 
+// Stopwatch
+const stopwatchDisplay = document.querySelector(".stopwatch-time");
+const startBtn = document.getElementById("start-stopwatch");
+const stopBtn = document.getElementById("stop-stopwatch");
+const resetBtn = document.getElementById("reset-stopwatch");
+const lapBtn = document.getElementById("lap-stopwatch");
+const lapsList = document.getElementById("laps-list");
+
+let stopwatchInterval = null;
+let elapsedTime = 0;
+let startTime = 0;
+let isRunning = false;
+let lapCount = 1;
+
+// Update Stopwatch Display
+function updateStopwatch() {
+
+    elapsedTime = Date.now() - startTime;
+
+    let hours = Math.floor(elapsedTime / 3600000);
+    let minutes = Math.floor((elapsedTime % 3600000) / 60000);
+    let seconds = Math.floor((elapsedTime % 60000) / 1000);
+    let milliseconds = Math.floor((elapsedTime % 1000) / 10);
+
+    hours = String(hours).padStart(2, "0");
+    minutes = String(minutes).padStart(2, "0");
+    seconds = String(seconds).padStart(2, "0");
+    milliseconds = String(milliseconds).padStart(2, "0");
+
+    stopwatchDisplay.textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+}
+
+// Start
+startBtn.addEventListener("click", function () {
+    if (isRunning) {
+        return;
+    }
+    isRunning = true;
+    startTime = Date.now() - elapsedTime;
+    stopwatchInterval = setInterval(updateStopwatch, 10);
+});
+
+// Stop
+stopBtn.addEventListener("click", function () {
+    if (!isRunning) {
+        return;
+    }
+    clearInterval(stopwatchInterval);
+    isRunning = false;
+});
+
+// Reset
+resetBtn.addEventListener("click", function () {
+    clearInterval(stopwatchInterval);
+    isRunning = false;
+    elapsedTime = 0;
+    startTime = 0;
+    stopwatchDisplay.textContent = "00:00:00";
+    lapsList.innerHTML = "";
+    lapCount = 1;
+    stopwatchLaps.classList.add("hidden");
+});
+// Lap
+const stopwatchLaps = document.querySelector(".stopwatch-laps");
+lapBtn.addEventListener("click", function () {
+    if (!isRunning) {
+        return;
+    }
+    if(lapCount === 1){
+    stopwatchLaps.classList.remove("hidden");
+    }
+    const lap = document.createElement("div");
+    lap.classList.add("lap-row");
+    lap.innerHTML = `
+        <span>${lapCount}</span>
+        <span>Lap ${lapCount}</span>
+        <span>${stopwatchDisplay.textContent}</span>
+    `;
+    lapsList.appendChild(lap);
+    lapsList.scrollTop = lapsList.scrollHeight;
+    lapCount++;
+});
+
