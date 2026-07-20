@@ -10,50 +10,74 @@
     </head>    
     <body>
         <nav>
-            <div class="logo-text">
-                VIRTUAL CLOCK
-            </div>
+            <div class="logo-text">VIRTUAL CLOCK</div>
         </nav>
         <div class="parent-container"> 
             <div class="sidebar">
-                <div class="menu-item">
+                <div class="menu-item active" id="time-menu">
                     <span class="material-symbols-outlined">alarm</span>
                     <span>Time</span>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" id="stopwatch-menu">
                     <span class="material-symbols-outlined">timer</span>
                     <span>Stopwatch</span>
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" id="timer-menu">
                     <span class="material-symbols-outlined">hourglass</span>
                     <span>Timer</span>
                 </div>
             </div>
             <div class="main-content">
-                <div class="home-page">
-                    <div class="clock-container">
+                <div class="content-card">
+                    <div class="home-page">
+                        <div class="clock-container">
 
-                        <div id="time">
-                            00:00:00
+                            <div id="time">
+                                00:00:00
+                            </div>
+
+                            <div id="day">
+                                Monday
+                            </div>
+
+                            <div id="date">
+                                19 July 2026
+                            </div>
                         </div>
-
-                        <div id="day">
-                            Monday
+                    </div>    
+                    <div class="stopwatch-page hidden">
+                        <div class="stopwatch-container">
+                            <div class="stopwatch-time">
+                                00:00:00
+                            </div>
+                            <div class="stopwatch-controls">
+                                <button id="start-stopwatch">Start</button>
+                                <button id="stop-stopwatch">Stop</button>
+                                <button id="reset-stopwatch">Reset</button>
+                                <button id="lap-stopwatch">Lap</button>
+                            </div>
+                            <div class="stopwatch-laps">
+                                <ul id="laps-list"></ul>
+                            </div>
                         </div>
-
-                        <div id="date">
-                            19 July 2026
-                        </div>
-
                     </div>
-                </div>
-                <div class="stopwatch-page hidden">
-                    <h2>Stopwatch</h2>
-                    <p>This is the stopwatch page.</p>
-                </div>
-                <div class="timer-page hidden">
-                    <h2>Timer</h2>
-                    <p>This is the timer page.</p>
+                    <div class="timer-page hidden">
+                        <div class="timer-container">
+                            <div class="timer-inputs">
+                                <input type="number" id="hours" placeholder="HH" min="0" max="99" autocomplete="off"><span>:</span>
+                                <input type="number" id="minutes" placeholder="MM" min="0" max="59" autocomplete="off"><span>:</span>
+                                <input type="number" id="seconds" placeholder="SS" min="0" max="59" autocomplete="off"> 
+                            </div>
+                            <div class="timer-display">
+                                00:00:00
+                            </div>
+                            <div class="timer-controls">
+                                <button id="start-timer">Start</button>
+                                <button id="pause-timer">Pause</button>
+                                <button id="reset-timer">Reset</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>  

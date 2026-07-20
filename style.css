@@ -1,6 +1,12 @@
-body{
-    margin: 0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+body{
+    overflow: hidden;
+    user-select: none;
+}  
 nav{
     background-color: #3d98cd;
     color: white;
@@ -27,7 +33,7 @@ nav{
 .parent-container{
     display: flex;
     height: calc(100vh - 90px);
-    background-color: #ecf0f0;
+    background-color: #d9d9d9;
 }
 .sidebar{
     background-color: #383a3b;
@@ -62,12 +68,20 @@ nav{
     background-color: #d9d9d9;
     color: black;
 }
-.hidden{
-    display: none;
-}
 .main-content{
     flex: 1;
     position: relative;
+    overflow: hidden;
+}
+.content-card{
+    position: relative;
+    width: 97%;
+    height: calc(100% - 30px);
+    margin: 15px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
 }
 .home-page{
     width: 100%;
@@ -76,6 +90,8 @@ nav{
     justify-content: center;
     align-items: center;
     transform: translateX(-75px);
+    inset: 0;
+    position: absolute;
 }
 .clock-container{
     text-align: center;
@@ -94,4 +110,153 @@ nav{
 #date{
     font-size: 25px;
     color: #777;
+}
+.stopwatch-page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-75px);
+    inset: 0;
+    position: absolute;
+}
+.stopwatch-container{
+    width: 650px;
+    text-align: center;
+}
+.stopwatch-time{
+    font-size: 80px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 40px;
+}
+.stopwatch-controls{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.stopwatch-controls button{
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.stopwatch-controls button:hover{
+    transform: translateY(-2px);
+}
+.stopwatch-laps{
+    max-height:250px;
+    overflow-y:auto;
+    margin-top:30px;
+    text-align:left;
+}
+.timer-page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-75px);
+    inset: 0;
+    position: absolute;
+}
+.timer-container{
+    width: 650px;
+    text-align: center;
+}
+.timer-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+.timer-inputs input{
+    width: 80px;
+    height: 60px;
+    text-align: center;
+    font-size: 28px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+.timer-inputs span{
+    font-size: 40px;
+    font-weight: bold;
+}
+.timer-display{
+    font-size: 80px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 40px;
+}
+.timer-controls{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.timer-controls button{
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.timer-controls button:hover{
+    transform: translateY(-2px);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"]{
+    appearance: textfield;
+}
+.stopwatch-controls button:hover,
+.timer-controls button:hover{
+    background-color: #3d98cd;
+    color: white;
+}
+.timer-inputs input:focus{
+    border-color: #3d98cd;
+}
+.stopwatch-controls button,
+.timer-controls button{
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+.timer-inputs input::placeholder{
+    color: #888;
+}
+.timer-inputs input{
+    user-select: text;
+}
+#start-stopwatch,
+#start-timer{
+    background: #4CAF50;
+    color: white;
+}
+
+#stop-stopwatch,
+#pause-timer{
+    background: #FFA726;
+    color: white;
+}
+
+#reset-stopwatch,
+#reset-timer{
+    background: #EF5350;
+    color: white;
+}
+
+#lap-stopwatch{
+    background: #42A5F5;
+    color: white;
+}
+.hidden{
+    display: none;
 }
