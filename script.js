@@ -174,3 +174,83 @@ lapBtn.addEventListener("click", function () {
     lapCount++;
 });
 
+// Timer
+const hoursInput = document.getElementById("hours");
+const minutesInput = document.getElementById("minutes");
+const secondsInput = document.getElementById("seconds");
+
+const timerDisplay = document.querySelector(".timer-display");
+
+const startTimerBtn = document.getElementById("start-timer");
+const pauseTimerBtn = document.getElementById("pause-timer");
+const resetTimerBtn = document.getElementById("reset-timer");
+
+let timerInterval = null;
+let totalSeconds = 0;
+let isTimerRunning = false;
+
+function updateTimerDisplay(){
+    let hours = Math.floor(totalSeconds / 3600);
+    let minutes = Math.floor((totalSeconds % 3600) / 60);
+    let seconds = totalSeconds % 60;
+
+    hours = String(hours).padStart(2,"0");
+    minutes = String(minutes).padStart(2,"0");
+    seconds = String(seconds).padStart(2,"0");
+
+    timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+}
+startTimerBtn.addEventListener("click", function(){
+    if(isTimerRunning){
+        return;
+    }
+    if(totalSeconds === 0){
+        const h = Number(hoursInput.value) || 0;
+        const m = Number(minutesInput.value) || 0;
+        const s = Number(secondsInput.value) || 0;
+        if(m > 59 || s > 59){
+            alert("Minutes and seconds must be between 0 and 59.");
+            return;
+        }
+        totalSeconds = h * 3600 + m * 60 + s;
+        if(totalSeconds <= 0){
+            alert("Please enter a valid time.");
+            return;
+        }
+        updateTimerDisplay();
+    }
+    isTimerRunning = true;
+    hoursInput.disabled = true;
+    minutesInput.disabled = true;
+    secondsInput.disabled = true;
+
+    timerInterval = setInterval(function(){
+        totalSeconds--;
+        updateTimerDisplay();
+        if(totalSeconds === 0){
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            hoursInput.disabled = false;
+            minutesInput.disabled = false;
+            secondsInput.disabled = false;
+            alert("Time's up!");
+            return;
+        }
+    },1000);
+});
+pauseTimerBtn.addEventListener("click", function(){
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+});
+resetTimerBtn.addEventListener("click", function(){
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    totalSeconds = 0;
+    hoursInput.value = "";
+    minutesInput.value = "";
+    secondsInput.value = "";
+    timerDisplay.textContent = "00:00:00";
+    hoursInput.disabled = false;
+    minutesInput.disabled = false;
+    secondsInput.disabled = false;
+});
