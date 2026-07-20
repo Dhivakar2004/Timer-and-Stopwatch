@@ -129,9 +129,11 @@ nav{
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     inset: 0;
     position: absolute;
+    overflow-y: auto;
+    padding: 36px 0;
 }
 .stopwatch-container{
     width: min(650px, 100%);
@@ -431,6 +433,9 @@ input[type="number"]{
     .stopwatch-container,
     .timer-container{
         padding: 0 16px;
+    }
+    .stopwatch-page{
+        padding: 24px 0;
     }
     .stopwatch-controls,
     .timer-controls{
